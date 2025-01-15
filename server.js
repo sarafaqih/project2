@@ -8,6 +8,8 @@ const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose")
 
+console.log("Dev Branch")
+
 
 
 

@@ -7,7 +7,8 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose")
-
+const authController = require('./controllers/auth.js');
+const requestsController = require("./controllers/requests.js");
 
 console.log("start")
 
@@ -36,9 +37,9 @@ mongoose.connect(process.env.MONGODB_URI)
 
 
 
+app.use('/auth', authController);
 
-
-
+app.use('/users/:userId/requests', requestsController)
 
 
 

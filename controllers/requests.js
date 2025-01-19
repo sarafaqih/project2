@@ -18,7 +18,7 @@ router.get("/", async(req, res)=>{
 
 router.get("/new", async(req, res)=>{
     try {
-        res.render("/request/new.ejs")
+        res.render("request/new.ejs")
     } catch (error) {
         console.log(error)
         res.redirect("/")

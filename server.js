@@ -9,7 +9,7 @@ require('dotenv').config()
 const mongoose = require("mongoose")
 
 
-
+console.log("start")
 
 // =======================
 // 2. MIDDLEWARE

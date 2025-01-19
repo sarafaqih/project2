@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+</head>
+<body>
+  <h1>Create a new account!</h1>
+  <form action="/auth/sign-up" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required />
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required />
+    <label for="confirmPassword">Confirm Password:</label>
+    <input 
+      type="password"
+      name="confirmPassword"
+      id="confirmPassword"
+      required 
+    />
+    <label for="department">Department</label>
+    <select name="department" id="department">
+        <option value="Purchase">Purchase</option>
+        <option value="IT">IT</option>
+        <option value="HR">HR</option>
+        <option value="Finance">Finance</option>
+    </select>
+
+    <label for="role">Role</label>
+    <select name="role" id="role">
+        <option value="employee">employee</option>
+        <option value="manager">manager</option>
+        <option value="purchaseStaff">purchaseStaff</option>
+    </select>
+
+
+    <button type="submit">Sign up</button>
+  </form>
+</body>
+</html>

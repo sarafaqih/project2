@@ -9,8 +9,12 @@ require('dotenv').config()
 const mongoose = require("mongoose")
 const authController = require('./controllers/auth.js');
 const requestsController = require("./controllers/requests.js");
+const session = require('express-session');
+const isSignedIn = require("./middleware/is-signed-in.js")
+const passUserToView = require("./middleware/pass-user-to-view.js")
+const User = require('./models/user.js');
 
-console.log("start")
+
 
 // =======================
 // 2. MIDDLEWARE
@@ -27,6 +31,18 @@ mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{console.log(`Connected to ${mongoose.connection.name} DATABSE.`)})
 .catch(()=>{console.log(`ERROR CONNECTING TO DB ${mongoose.connection.name}.`)})
 
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
+// app.use(morgan('dev'));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passUserToView)
 
 
 
@@ -35,9 +51,15 @@ mongoose.connect(process.env.MONGODB_URI)
 // =======================
 
 
-
+app.get("/", async(req, res)=>{
+  res.render("homepage.ejs", {
+    user: req.session.user,
+  })
+})
 
 app.use('/auth', authController);
+
+app.use(isSignedIn)
 
 app.use('/users/:userId/requests', requestsController)
 

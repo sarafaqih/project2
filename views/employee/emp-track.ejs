@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Purchase Requests</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>+ Track Purchase Requests </h1>
+
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Item Title</td>
+            <td>Item Description</td>
+            <td>Item Quantity</td>
+            <td>Approval Status</td>
+            <td>Action</td>
+        </tr>
+
+        <tr>
+            <% items.forEach(item => { %>
+            <td></td>
+        </tr>
+    </table>
+    
+</body>
+</html>

@@ -6,14 +6,15 @@
     <title>Add a New App</title>
   </head>
   <body>
+    <%- include('../partials/_navbar.ejs') %>
     <h1>Add a New request</h1>
 
-    <form action="/users/<%= user._id %>/requests" method="POST">
+    <form action="/users/<%=user._id%>/requests" method="POST">
         <label for="title">Item Title: </label>
         <input type="text" name="title" id="title">
 
         <label for="description">Item Description: </label>
-        <input type="text" name="Description" id="Description" />
+        <input type="text" name="description" id="Description" />
       
         <label for="quantity">Item Quantity</label>
         <input name="quantity" id="quantity" />

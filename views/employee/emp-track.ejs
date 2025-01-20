@@ -20,8 +20,14 @@
         </tr>
 
         <tr>
-            <% items.forEach(item => { %>
-            <td></td>
+            <% request.forEach((request)=>{ %>
+            <td>1</td>
+            <td><%= request.title %></td>
+            <td><%= request.description %></td>
+            <td><%= request.quantity %></td>
+            <td>Approval Status</td>
+            <td>Action</td>
+            <% }) %>
         </tr>
     </table>
     

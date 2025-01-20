@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include('partials/_navbar.ejs') %>
     <h1>Home Page</h1>
+    
     <button>
         <a href="users/<%= user._id %>/requests/new">Add new</a>
         </button>

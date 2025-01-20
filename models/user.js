@@ -45,7 +45,7 @@ const userSchema = mongoose.Schema({
     enum: ['employee', 'manager', 'purchaseStaff'],
     required: true
   },
-  requestSchema: [requestSchema]
+  requests: [requestSchema]
 });
 
 const User = mongoose.model('User', userSchema);

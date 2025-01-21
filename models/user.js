@@ -20,8 +20,19 @@ const requestSchema = mongoose.Schema({
   priority: {
     type: String,
     enum: ['high', 'medium', 'low']
-  }
+  },
 
+  createdDate: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
+
+  approvalStatus: {
+    type: String,
+    enum: ['pending manager approval', 'approved by manager', 'rejected by manager', 'approved by purchasing', 'rejected by purchasing'],
+    required: true,
+  },
 
 
 })

@@ -14,19 +14,24 @@
         <input type="text" name="title" id="title">
 
         <label for="description">Item Description: </label>
-        <input type="text" name="description" id="Description" />
+        <input type="text" name="description" id="description" />
       
         <label for="quantity">Item Quantity</label>
         <input name="quantity" id="quantity" />
 
-        <label for="date">Delivery Date: </label>
-        <input type="date" name="date" id="date" />
+        <label for="deliverydate">Delivery Date: </label>
+        <input type="date" name="deliverydate" id="deliverydate" />
 
         <label for="priority">Priority:</label>
   <select id="priority" name="priority">
     <option value="high">high</option>
     <option value="medium">medium</option>
     <option value="low">low</option>
+  </select>
+
+  <label for="approvalStatus">Priority:</label>
+  <select id="approvalStatus" name="approvalStatus">
+    <option value="pending manager approval">pending manager approval</option>
   </select>
 
   <button type="submit">Add request</button>

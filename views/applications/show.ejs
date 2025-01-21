@@ -21,7 +21,6 @@
 
 
 
-
     <table border="3">
         <tr>
             <td>#</td>
@@ -35,11 +34,13 @@
             <% let counter = 1 %>
             <% requests.forEach((request)=>{ %>
         <tr>
-            <td><%= counter++ %></td>
+            <td>
+                <a href="./display.ejs"><%= counter++ %></a>
+            </td>
             <td><%= request.title %></td>
             <td><%= request.description %></td>
             <td><%= request.quantity %></td>
-            <td>Approval Status</td>
+            <td><%= request.approvalStatus %></td>
             <td>
                 <form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">delete</i></button></form> 
 

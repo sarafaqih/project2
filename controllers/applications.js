@@ -91,11 +91,22 @@ router.get('/:requestId/edit', async (req, res) => {
 
 router.put("/:requestId",async(req,res)=>{
   const currentUser = await User.findById(req.session.user._id)
-  const request = currentUser.requests.id(req.params.requestId)
+  const request = await currentUser.requests.id(req.params.requestId)
   request.set(req.body)
   await currentUser.save()
   res.redirect(`/users/${currentUser._id}/applications/showAll`)
 })
+
+// router.get('/:requestId', async (req, res) => {
+//   try {
+//     const currentUser = await User.findById(req.session.user._id)
+//     const request = await currentUser.requests.id(req.params.requestId)
+//     res.render('applications/display.ejs', {request: request, currentUser:currentUser})
+//   } catch (error) {
+//     console.log(error)
+//     res.redirect('/')
+//   }
+// })
 
 
 module.exports = router

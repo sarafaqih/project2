@@ -1,0 +1,77 @@
+<!-- views/applications/edit.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
+  <title>Editing <%= request.title %> request</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+
+
+  <h2>Edit <%= request.title %> request</h2>
+  
+<form action="/users/<%= user._id %>/applications/<%= request._id %>?_method=PUT" method="POST">
+<table border="2">
+  <tr>
+    <td>#</td>
+    <td><%= request.id %></td>
+  </tr>
+
+  <tr>
+    <td><label for="title">Item Title </label></td>
+    <td><input type="text" name="title" id="title" value="<%= request.title %>"></td>
+  </tr>
+
+  <tr>
+    <td><label for="description">Item Description: </label></td>
+    <td><input type="text" name="Description" id="Description" value="<%= request.description %>"/></td>
+  </tr>
+
+  <tr>
+    <td><label for="quantity">Item Quantity</label></td>
+    <td><input name="quantity" id="quantity" value="<%= request.quantity %>"/></td>
+  </tr>
+
+  <tr>
+    <td><label for="date">Delivery Date: </label></td>
+    <td><input type="date" name="date" id="date" value="<%= request.date %>"/></td>
+  </tr>
+
+  <tr>
+    <td><label for="priority">Priority:</label></td>
+    <td><select id="priority" name="priority" >
+      <option value="high"  <%= request.priority === "high" ? "selected" : "" %>>high</option>
+      <option value="medium"<%= request.priority === "medium" ? "selected" : "" %>>medium</option>
+      <option value="low" <%= request.priority === "low" ? "selected" : "" %>>low</option>
+    </select></td>
+  </tr>
+
+  <tr>
+    <td>Created By</td>
+    <td><%= currentUser.username %></td>
+  </tr>
+
+  <tr>
+    <td>Created Date</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td colspan="2" style="text-align: center;"><button type="submit">Edit</button></td>
+  </tr>
+
+</table>
+</form>
+<br>
+<br>
+
+<form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">delete</i></button></form> 
+
+</body>
+</html>

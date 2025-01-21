@@ -7,9 +7,10 @@
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Home Page</h1>
+    <h1>Welcome <%= user.username %>!</h1>
+    <h2>Home Page</h2>
     <button>
-        <a href="/users/<%=user._id%>/requests/new">Add new</a>
+        <a href="/users/<%=user._id%>/requests/new">Create a Request</a>
         </button>
 </body>
 </html>

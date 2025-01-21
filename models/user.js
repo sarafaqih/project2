@@ -20,9 +20,7 @@ const requestSchema = mongoose.Schema({
   priority: {
     type: String,
     enum: ['high', 'medium', 'low']
-  }
-
-
+  },
 
 })
 

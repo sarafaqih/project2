@@ -1,6 +1,7 @@
 // =======================
 // 1. IMPORTS
 // =======================
+
 const express = require('express');
 const app = express();
 const methodOverride = require("method-override");
@@ -8,11 +9,12 @@ const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose")
 const authController = require('./controllers/auth.js');
-const requestsController = require("./controllers/requests.js");
+const applicationsController = require('./controllers/applications.js')
 const session = require('express-session');
 const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require("./middleware/pass-user-to-view.js")
-const User = require('./models/user.js');
+const User = require('./models/user.js')
+
 
 
 
@@ -40,7 +42,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
   })
-);
+)
 
 const path = require("path")
 app.use(express.static(path.join(__dirname, "public")));
@@ -62,17 +64,17 @@ app.use(passUserToView)
 
 app.get('/', (req, res) => {
   if (req.session.user) {
-    res.redirect(`/users/${req.session.user._id}/requests`);
+    res.redirect(`/users/${req.session.user._id}/applications`)
   } else {
-    res.render('index.ejs');
+    res.render('index.ejs')
   }
-});
+})
 
-app.use('/auth', authController);
+app.use('/auth', authController)
 
 app.use(isSignedIn)
 
-app.use('/users/:userId/requests', requestsController)
+app.use('/users/:userId/applications', applicationsController)
 
 
 
@@ -81,4 +83,4 @@ app.use('/users/:userId/requests', requestsController)
 // =======================
 app.listen(3000, () => {
   console.log('Listening on port 3000');
-});
+})

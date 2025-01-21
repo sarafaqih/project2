@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const requestSchema = mongoose.Schema({
   title: {
@@ -45,9 +45,9 @@ const userSchema = mongoose.Schema({
     enum: ['employee', 'manager', 'purchaseStaff'],
     required: true
   },
-  requestSchema: [requestSchema]
-});
+  requests: [requestSchema]
+})
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema)
 
-module.exports = User;
+module.exports = User

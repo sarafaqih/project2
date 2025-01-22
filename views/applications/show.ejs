@@ -10,7 +10,6 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    
     <h2>Track Purchase Requests</h2>
 <!-- 
     <% requests.forEach((request)=>{%>
@@ -35,9 +34,10 @@
             <% requests.forEach((request)=>{ %>
         <tr>
             <td>
-                <a href="./display.ejs"><%= counter++ %></a>
+                <a href="/users/<%=user._id%>/applications/<%= request._id %>/purchase/view"><%= counter++ %></a>
+              
             </td>
-            <td><%= request.title %></td>
+            <td><a href="/users/<%= user._id %>/applications/<%= request._id %>"><%= request.title %></a></td>
             <td><%= request.description %></td>
             <td><%= request.quantity %></td>
             <td><%= request.approvalStatus %></td>

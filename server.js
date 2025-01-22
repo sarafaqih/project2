@@ -30,8 +30,8 @@ app.use(morgan("dev")); // Logs the requests in the terminal
 // 3. CONNECTION TO DATABASE
 // =======================
 mongoose.connect(process.env.MONGODB_URI)
-.then(()=>{console.log("Connected to DATABSE")})
-.catch(()=>{console.log("ERROR CONNECTING TO DB OMAR")})
+.then(()=>{console.log(`Connected to ${mongoose.connection.name} DATABSE.`)})
+.catch(()=>{console.log(`ERROR CONNECTING TO DB ${mongoose.connection.name}.`)})
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));

@@ -10,11 +10,18 @@
 <body>
   <%- include('../partials/_navbar.ejs') %>
 
-
+<h1 style="color: blue;">Purchase View</h1>
 
   <h2>Display <%= request.title %> request</h2>
   
-<form action="/users/<%= user._id %>/applications/<%= request._id %>" method="GET">
+<form action="/users/<%= user._id %>/applications/<%= request._id %>/purchase/view?_method=PUT" method="POST">
+
+  <label for="approvalStatus"></label>
+  <select id="approvalStatus" name="approvalStatus">
+    <option value="approved by purchasing">approved by purchasing</option>
+    <option value="rejected by purchasing">rejected by purchasing</option>
+  </select>
+
 <table border="2">
   <tr>
     <td><label for="title">Item Title </label></td>
@@ -55,12 +62,15 @@
     <td>Approval Status</td>
     <td><%=request.approvalStatus%></td>
   </tr>
-
+  <tr>
+    <td colspan="2" style="text-align: center;"><button type="submit">Edit</button></td>
+  </tr>
 </table>
 </form>
 <br>
 <br>
 
+<form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">delete</i></button></form> 
 
 </body>
 </html>

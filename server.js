@@ -14,6 +14,7 @@ const session = require('express-session');
 const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require("./middleware/pass-user-to-view.js")
 const User = require('./models/user.js')
+const Request = require('./models/requests.js')
 
 
 

@@ -87,20 +87,6 @@ router.post("/", async(req, res)=>{
 })
 
 
-
-// router.get('/:requestId',async(req,res)=>{
-//   try{
-//     const currentUser = await User.findById(req.session.user._id)
-//     console.log(currentUser)
-//     const request = currentUser.requests.id(req.params.requestId)
-//     console.log(request)
-//     res.render("applications/show.ejs",{request:request})
-//   }catch(error){
-//     console.log(error)
-//     res.redirect("/")
-//   }
-// })
-
 router.delete("/:requestId",async (req,res)=>{
   try{
     const currentUser = await User.findById(req.session.user._id)
@@ -128,28 +114,11 @@ router.get('/:requestId/edit', async (req, res) => {
 router.get('/:requestId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
-    const request = await currentUser.requests.id(req.params.requestId)
-    console.log(request)
+    const request =  await currentUser.requests.id(req.params.requestId)
+    if(currentUser.role==='employee'){
     res.render('applications/display.ejs', {request: request, currentUser:currentUser})
-  } catch (error) {
-    console.log(error)
-    res.redirect('/')
-  }
-})
-
-
-router.put("/:requestId",async(req,res)=>{
-  const currentUser = await User.findById(req.session.user._id)
-  const request = currentUser.requests.id(req.params.requestId)
-  request.set(req.body)
-  await currentUser.save()
-  res.redirect(`/users/${currentUser._id}/applications/showAll`)
-})
-
+  } else if (currentUser.role === 'manager'){
 //to let the manager view each request in a seperate page
-router.get('/:requestId', async (req, res) => {
-  try {
-    const currentUser = await User.findById(req.session.user._id)
     const allUser = await User.find()
     let request = []
     let user = []
@@ -163,11 +132,45 @@ router.get('/:requestId', async (req, res) => {
     })
     res.render('Manager/show.ejs',
       {request:request, user:user, currentUser: currentUser._id})
-    } catch(error){
+
+  }
+  } catch (error) {
+    console.log(error)
+    res.redirect('/')
+  }
+})
+
+
+router.put("/:requestId",async(req,res)=>{
+  try{
+    const currentUser = await User.findById(req.session.user._id)
+
+    if(currentUser.role === 'employee'){
+      const request = currentUser.requests.id(req.params.requestId)    
+      request.set(req.body)
+      await currentUser.save()
+      res.redirect(`/users/${currentUser._id}/applications/showAll`)
+    }
+    else if(currentUser.role === 'manager'){
+      // to approve the request by the manager
+    const user = await User.findOne({ "requests._id": req.params.requestId });
+    const request = user.requests.id(req.params.requestId);
+    if(req.body.action === 'approve'){
+      request.status = 'Approve by Manager';
+    }
+    else if (req.body.action === 'reject'){
+      request.status = 'Reject by Manager';
+    }
+    await user.save();
+    res.redirect(`/users/${user._id}/applications/showAll?action=all`);
+  }     
+    }catch(error){
       console.log(error)
       res.redirect('/')
     }
   })
+
+
 
 router.get('/:requestId/edit', async (req, res) => {
   try {
@@ -180,61 +183,6 @@ router.get('/:requestId/edit', async (req, res) => {
     res.redirect('/')
   }
 })
-
-
-// to approve the request by the manager
-
-router.put("/:requestId",async(req,res)=>{
-
-  try {
-    const user = await User.findOne({ "requests._id": req.params.requestId });
-    const request = user.requests.id(req.params.requestId);
-    if(req.body.action === 'approve'){
-      request.status = 'Approve by Manager';
-    }
-    else if (req.body.action === 'reject'){
-      request.status = 'Reject by Manager';
-    }
-    await user.save();
-    res.redirect(`/users/${user._id}/applications/showAll`);
-  } catch (error) {
-    console.log(error)
-    res.redirect('/')
-  }
-})
-
-//to approve request by manager (show.ejs)
-router.put("/:requestId",async(req,res)=>{
-
-  try {
-    const currentUser = await User.findById(req.session.user._id)
-    const user = await User.findOne({ "requests._id": req.params.requestId });
-    const request = user.requests.id(req.params.requestId);
-    if(req.body.action === 'approve'){
-      request.status = 'Approve by Manager';
-    }
-    else if (req.body.action === 'reject'){
-      request.status = 'Reject by Manager';
-    }
-    await user.save();
-    res.redirect(`/users/${currentUser._id}/applications/${request._id}`);
-
-  } catch(error){
-    console.log(error)
-    res.redirect('/')
-  }
-})
-
-
-    //update employee requests
-router.put("/:requestId",async(req,res)=>{
-  const currentUser = await User.findById(req.session.user._id)
-  const request = await currentUser.requests.id(req.params.requestId)
-  request.set(req.body)
-  await currentUser.save()
-  res.redirect(`/users/${currentUser._id}/applications/showAll`)
-})
-
 
 router.get('/:requestId/purchase/view', async (req, res) => {
   try {

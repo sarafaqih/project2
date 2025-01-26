@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const requestSchema = mongoose.Schema({
   title: {
@@ -19,11 +19,12 @@ const requestSchema = mongoose.Schema({
   },
   priority: {
     type: String,
-    enum: ['High', 'Medium', 'Low']
+    enum: ['high', 'medium', 'low']
+  },
+  status: {
+    type:String,
+    enum: ['Pending Manager', 'Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase']
   }
-
-
-
 })
 
 const userSchema = mongoose.Schema({
@@ -45,9 +46,9 @@ const userSchema = mongoose.Schema({
     enum: ['employee', 'manager', 'purchaseStaff'],
     required: true
   },
-  requestSchema: [requestSchema]
-});
+  requests: [requestSchema]
+})
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema)
 
-module.exports = User;
+module.exports = User

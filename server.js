@@ -1,14 +1,19 @@
 // =======================
 // 1. IMPORTS
 // =======================
+
 const express = require('express');
 const app = express();
 const methodOverride = require("method-override");
 const morgan = require("morgan");
 require('dotenv').config()
 const mongoose = require("mongoose")
-
-console.log("Dev Branch")
+const authController = require('./controllers/auth.js');
+const applicationsController = require('./controllers/applications.js')
+const session = require('express-session');
+const isSignedIn = require("./middleware/is-signed-in.js")
+const passUserToView = require("./middleware/pass-user-to-view.js")
+const User = require('./models/user.js')
 
 
 
@@ -28,6 +33,27 @@ mongoose.connect(process.env.MONGODB_URI)
 .then(()=>{console.log("Connected to DATABSE")})
 .catch(()=>{console.log("ERROR CONNECTING TO DB OMAR")})
 
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
+// app.use(morgan('dev'));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+)
+
+const path = require("path")
+app.use(express.static(path.join(__dirname, "public")));
+
+
+app.use(passUserToView)
+
+
+
+
+
 
 
 
@@ -36,11 +62,19 @@ mongoose.connect(process.env.MONGODB_URI)
 // =======================
 
 
+app.get('/', (req, res) => {
+  if (req.session.user) {
+    res.redirect(`/users/${req.session.user._id}/applications`)
+  } else {
+    res.render('index.ejs')
+  }
+})
 
+app.use('/auth', authController)
 
+app.use(isSignedIn)
 
-
-
+app.use('/users/:userId/applications', applicationsController)
 
 
 
@@ -49,4 +83,4 @@ mongoose.connect(process.env.MONGODB_URI)
 // =======================
 app.listen(3000, () => {
   console.log('Listening on port 3000');
-});
+})

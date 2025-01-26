@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,3 +21,22 @@
   <% } %>
 </body>
 </html>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website index</title>
+  </head>
+  <body>
+    <%- include("./partials/_navbar.ejs")%>
+
+    <p style="text-align: center">Welcome to NSH 
+      Purchase Requisition System</p>
+    <% if(user){%>
+    <h1><%=user.username%></h1>
+    <%}%>
+    <!-- <a href="/auth/sign-up">Sign up</a>
+    <a href="/auth/sign-in">Sign in</a> -->
+  </body>
+</html>
+>>>>>>> c5148b1536bb70ebca56ada7734a0b27e95c97fe

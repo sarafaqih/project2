@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     try {
       const currentUser = await User.findById(req.session.user._id)
       // console.log(currentUser.requests)
+
       if (currentUser.role === 'employee'){
       res.render('applications/index.ejs',{requests:currentUser.requests})
       }
@@ -21,6 +22,7 @@ router.get('/', async (req, res) => {
         res.render('purchaseStaff/index.ejs',{requests:currentUser.requests})
       }
   } catch (error) {
+
       console.log(error)
       res.redirect('/')
     }
@@ -37,6 +39,7 @@ router.get("/new", async(req,res)=>{
 router.get('/showAll', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
+
     const allUser = await User.find()
     const categoryType = req.query.action
     // console.log(currentUser.requests)
@@ -71,7 +74,9 @@ router.get('/showAll', async (req, res) => {
 router.post("/", async(req, res)=>{
   try {
       const currentUser = await User.findById(req.session.user._id)
+
       currentUser.requests.push(req.body)  
+
       await currentUser.save()
       res.redirect(`/users/${currentUser._id}/applications/showAll`)
   } catch (error) {
@@ -108,16 +113,25 @@ router.delete("/:requestId",async (req,res)=>{
   }
 })
 
+
 router.get('/:requestId/edit', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
     const request = currentUser.requests.id(req.params.requestId)
     res.render('applications/edit.ejs', {request: request, currentUser:currentUser})
+
+    
+router.get('/:requestId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id)
+    const request = await currentUser.requests.id(req.params.requestId)
+    res.render('applications/display.ejs', {request: request, currentUser:currentUser})
   } catch (error) {
     console.log(error)
     res.redirect('/')
   }
 })
+
 
 // router.put("/:requestId",async(req,res)=>{
 //   const currentUser = await User.findById(req.session.user._id)
@@ -145,12 +159,18 @@ router.get('/:requestId', async (req, res) => {
     res.render('Manager/show.ejs',
       {request:request, user:user, currentUser: currentUser._id})
 
+router.get('/:requestId/edit', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id)
+    const request = currentUser.requests.id(req.params.requestId)
+    res.render('applications/edit.ejs', {request: request, currentUser:currentUser})
 
   } catch (error) {
     console.log(error)
     res.redirect('/')
   }
 })
+
 
 // to approve the request by the manager
 
@@ -187,10 +207,35 @@ router.put("/:requestId",async(req,res)=>{
     }
     await user.save();
     res.redirect(`/users/${currentUser._id}/applications/${request._id}`);
+
+    //update employee requests
+router.put("/:requestId",async(req,res)=>{
+  const currentUser = await User.findById(req.session.user._id)
+  const request = await currentUser.requests.id(req.params.requestId)
+  request.set(req.body)
+  await currentUser.save()
+  res.redirect(`/users/${currentUser._id}/applications/showAll`)
+})
+
+
+router.get('/:requestId/purchase/view', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id)
+    const request = currentUser.requests.id(req.params.requestId)
+    res.render('applications/purchase-view.ejs', {request: request, currentUser:currentUser})
   } catch (error) {
     console.log(error)
     res.redirect('/')
   }
+})
+
+
+router.put("/:requestId/purchase/view",async(req,res)=>{
+  const currentUser = await User.findById(req.session.user._id)
+  const request = await currentUser.requests.id(req.params.requestId)
+  request.set(req.body)
+  await currentUser.save()
+  res.redirect(`/users/${currentUser._id}/applications/showAll`)
 })
 
 

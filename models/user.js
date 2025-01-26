@@ -24,7 +24,12 @@ const requestSchema = mongoose.Schema({
   status: {
     type:String,
     enum: ['Pending Manager', 'Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase']
-  }
+  },
+   createdDate: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
 })
 
 const userSchema = mongoose.Schema({

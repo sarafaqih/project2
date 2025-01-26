@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +17,7 @@
 <form action="/users/<%= user._id %>/applications/<%= request._id %>?_method=PUT" method="POST">
 <table border="2">
   <tr>
+
     <td><label for="title">Item Title </label></td>
     <td><input type="text" name="title" id="title" value="<%= request.title %>"></td>
   </tr>
@@ -34,6 +33,7 @@
   </tr>
 
   <tr>
+
     <td><label for="deliverydate">Delivery Date: </label></td>
     <td><input type="date" name="deliverydate" id="deliverydate" value="<%= request.deliverydate %>"/></td>
   </tr>
@@ -60,7 +60,6 @@
   <tr>
     <td>Approval Status</td>
     <td><%=request.approvalStatus%></td>
-
 
   </tr>
 

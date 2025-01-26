@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
+
     <title>Track Requests</title>
+
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
+
 
     <h2>Track Purchase Requests</h2>
 <!-- 
@@ -16,8 +19,6 @@
       <a href="/users/<%=user._id%>/applications/<%=request._id%>"> <li><%=request.title%> and <%= request.description%></li></a>
      
     <%})%> -->
-
-
 
 
     <table border="3">
@@ -33,6 +34,7 @@
             <% let counter = 1 %>
             <% requests.forEach((request)=>{ %>
         <tr>
+
             <td>
                 <a href="/users/<%=user._id%>/applications/<%= request._id %>/purchase/view"><%= counter++ %></a>
               
@@ -41,6 +43,7 @@
             <td><%= request.description %></td>
             <td><%= request.quantity %></td>
             <td><%= request.approvalStatus %></td>
+
             <td>
                 <form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">delete</i></button></form> 
 
@@ -53,4 +56,5 @@
         
     </table>
 </body>
+
 </html>

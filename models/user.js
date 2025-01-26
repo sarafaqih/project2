@@ -21,20 +21,15 @@ const requestSchema = mongoose.Schema({
     type: String,
     enum: ['high', 'medium', 'low']
   },
-
-  createdDate: {
+  status: {
+    type:String,
+    enum: ['Pending Manager', 'Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase']
+  },
+   createdDate: {
     type: Date,
     required: true,
     default: Date.now
   },
-
-  approvalStatus: {
-    type: String,
-    enum: ['pending manager approval', 'approved by manager', 'rejected by manager', 'approved by purchasing', 'rejected by purchasing'],
-    required: true,
-  },
-
-
 })
 
 const userSchema = mongoose.Schema({

@@ -54,6 +54,27 @@ app.use(passUserToView)
 
 
 
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
+// app.use(morgan('dev'));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+)
+
+const path = require("path")
+app.use(express.static(path.join(__dirname, "public")));
+
+
+app.use(passUserToView)
+
+
+
+
+
 
 
 
@@ -83,4 +104,6 @@ app.use('/users/:userId/applications', applicationsController)
 // =======================
 app.listen(3000, () => {
   console.log('Listening on port 3000');
+
 })
+

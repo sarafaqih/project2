@@ -11,7 +11,16 @@ router.get('/', async (req, res) => {
     try {
       const currentUser = await User.findById(req.session.user._id)
       // console.log(currentUser.requests)
-      res.render('applications/index.ejs',{requests:currentUser.requests})
+      console.log(currentUser.role)
+      if(currentUser.role === "employee"){
+        res.render('applications/index.ejs',{requests:currentUser.requests})
+      }
+      else if(currentUser.role === "manager"){
+        res.render('manager/index.ejs',{requests:currentUser.requests})
+      }
+      else if(currentUser.role === "purchaseStaff"){
+        res.render('purchaseStaff/index.ejs',{requests:currentUser.requests})
+      }
     } catch (error) {
       console.log(error)
       res.redirect('/')
@@ -30,7 +39,16 @@ router.get('/showAll', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
     // console.log(currentUser.requests)
+    console.log(currentUser.role)
+    if(currentUser.role === "employee"){
     res.render('applications/show.ejs',{requests:currentUser.requests})
+    }
+    else if(currentUser.role === "manager"){
+      res.render('manager/show.ejs',{requests:currentUser.requests})
+    }
+    else if(currentUser.role === "purchaseStaff"){
+      res.render('purchaseStaff/show.ejs',{requests:currentUser.requests})
+    }
   } catch (error) {
     console.log(error)
     res.redirect('/')

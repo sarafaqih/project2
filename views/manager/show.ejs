@@ -10,8 +10,8 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    
-    <h2>Track Purchase Requests</h2>
+    <h2>Manager</h2>
+    <h2>Purchase Requests</h2>
 
 
 
@@ -38,9 +38,9 @@
             <td><%= request.quantity %></td>
             <td><%= request.approvalStatus %></td>
             <td>
-                <form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">delete</i></button></form> 
+                <form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">check_box</i></button></form> 
 
-                <button><a href="/users/<%= user._id %>/applications/<%= request._id %>/edit"><i class="material-icons" style="color: black;">edit</i></a></button>
+                <button><a href="/users/<%= user._id %>/applications/<%= request._id %>/edit"><i class="material-icons" style="color: black;">disabled_by_default</i></a></button>
             
 
             </td>

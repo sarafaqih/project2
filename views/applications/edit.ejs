@@ -11,7 +11,6 @@
   <%- include('../partials/_navbar.ejs') %>
 
 
-
   <h2>Edit <%= request.title %> request</h2>
   
 <form action="/users/<%= user._id %>/applications/<%= request._id %>?_method=PUT" method="POST">
@@ -33,9 +32,9 @@
   </tr>
 
   <tr>
-
+    
     <td><label for="deliverydate">Delivery Date: </label></td>
-    <td><input type="date" name="deliverydate" id="deliverydate" value="<%= request.deliverydate %>"/></td>
+    <td><input type="date" name="deliverydate" id="deliverydate" value="<%= request.deliverydate.toISOString().split('T')[0] %>"/></td>
   </tr>
 
   <tr>
@@ -54,12 +53,12 @@
 
   <tr>
     <td>Created Date</td>
-    <td><%= request.createdDate %></td>
+    <td><%= request.createdDate.toISOString().split('T')[0] %></td>
   </tr>
 
   <tr>
     <td>Approval Status</td>
-    <td><%=request.approvalStatus%></td>
+    <td><%=request.status%></td>
 
   </tr>
 

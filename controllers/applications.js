@@ -75,7 +75,7 @@ router.post("/", async(req, res)=>{
   try {
       const currentUser = await User.findById(req.session.user._id)
 
-      currentUser.requests.push(req.body)  
+      currentUser.requests.push(req.body) 
 
       await currentUser.save()
       res.redirect(`/users/${currentUser._id}/applications/showAll`)
@@ -119,12 +119,17 @@ router.get('/:requestId/edit', async (req, res) => {
     const currentUser = await User.findById(req.session.user._id)
     const request = currentUser.requests.id(req.params.requestId)
     res.render('applications/edit.ejs', {request: request, currentUser:currentUser})
-
+  } catch(error){
+    console.log(error)
+    res.redirect('/')
+  }
+  })
     
 router.get('/:requestId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
     const request = await currentUser.requests.id(req.params.requestId)
+    console.log(request)
     res.render('applications/display.ejs', {request: request, currentUser:currentUser})
   } catch (error) {
     console.log(error)
@@ -133,13 +138,13 @@ router.get('/:requestId', async (req, res) => {
 })
 
 
-// router.put("/:requestId",async(req,res)=>{
-//   const currentUser = await User.findById(req.session.user._id)
-//   const request = currentUser.requests.id(req.params.requestId)
-//   request.set(req.body)
-//   await currentUser.save()
-//   res.redirect(`/users/${currentUser._id}/applications/showAll`)
-// })
+router.put("/:requestId",async(req,res)=>{
+  const currentUser = await User.findById(req.session.user._id)
+  const request = currentUser.requests.id(req.params.requestId)
+  request.set(req.body)
+  await currentUser.save()
+  res.redirect(`/users/${currentUser._id}/applications/showAll`)
+})
 
 //to let the manager view each request in a seperate page
 router.get('/:requestId', async (req, res) => {
@@ -158,6 +163,11 @@ router.get('/:requestId', async (req, res) => {
     })
     res.render('Manager/show.ejs',
       {request:request, user:user, currentUser: currentUser._id})
+    } catch(error){
+      console.log(error)
+      res.redirect('/')
+    }
+  })
 
 router.get('/:requestId/edit', async (req, res) => {
   try {
@@ -193,6 +203,7 @@ router.put("/:requestId",async(req,res)=>{
   }
 })
 
+//to approve request by manager (show.ejs)
 router.put("/:requestId",async(req,res)=>{
 
   try {
@@ -207,6 +218,13 @@ router.put("/:requestId",async(req,res)=>{
     }
     await user.save();
     res.redirect(`/users/${currentUser._id}/applications/${request._id}`);
+
+  } catch(error){
+    console.log(error)
+    res.redirect('/')
+  }
+})
+
 
     //update employee requests
 router.put("/:requestId",async(req,res)=>{

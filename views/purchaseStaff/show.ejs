@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
+    <title>Manager Purchase Requests</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    
+    <h2>Track Purchase Requests</h2>
+    <table border="3">
+        <tr>
+            <td>#</td>
+            <!-- <td>Requester Name</td>
+            <td>Requester Department</td> -->
+            <td>Item Title</td>
+            <td>Item Description</td>
+            <td>Item Quantity</td>
+            <!-- <td>Priority</td> -->
+
+            <td>Approval Status</td>
+            <td>Action</td>
+        </tr>
+
+        <%if(categoryType==='pending'){%>
+            <%categoryType='Pending Manager'%>
+        <%}%>
+        <%if(categoryType==='approveByManager'){%>
+            <%categoryType='Approve by Manager'%>
+        <%}%>
+        <%if(categoryType==='rejectByManager'){%>
+            <%categoryType='Reject by Manager'%>
+        <%}%>
+        <%if(categoryType==='approveByPurchase'){%>
+            <%categoryType='Approve by purchase'%>
+        <%}%>
+        <%if(categoryType==='completedByPurchase'){%>
+            <%categoryType='Completed by purchase'%>
+        <%}%>
+        <%if(categoryType==='rejectByPurchase'){%>
+            <%categoryType='Reject by purchase'%>
+        <%}%>
+        
+        <%let count=0%>
+        <%allRequests.forEach ((request) => {%>
+            <%(request.requests).forEach((item) => {%>
+                <%if(item.status === categoryType){ %>
+                   
+        <tr>
+            <td><a href="/users/<%=user._id%>/applications/<%=item._id%>"><%=count= count+1%></a></td>
+            <!-- <td><%=request.username%></td>
+            <td><%=request.department%></td> -->
+            <td><%=item.title%></td>
+            <td><%=item.description%></td>
+            <td><%=item.quantity%></td>
+            <td>
+                <%if(item.status == null){%>
+                    Pending Manager
+                <%}else{%>
+                <%=item.status%></td>
+                <%}%>
+            <td>
+                <%if(item.status === 'Approve by Manager'){ %>
+                    <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
+                        <input type="hidden" name="action" value="approve">
+                        <button type="submit"><span>&#10004;</span></button>
+                    </form> 
+                    <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
+                        <input type="hidden" name="action" value="reject">
+                        <button type="submit"><span>&#10006;</span></button>
+                    </form> 
+                <%}else{}%>
+            </td>
+            
+            <%}%>
+
+        <%})%>
+
+        </tr>
+
+
+        <%})%>
+
+        <%if(count===0){%>
+            <tr >
+                <td colspan="7" style="text-align: center;">No data</td>
+            </tr>
+
+        <%}%>
+
+    </table>
+
+</body>
+</html>

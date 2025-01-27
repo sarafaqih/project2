@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Add a New request</title>
+
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Add a New request</h1>
+
+    <form action="/users/<%=user._id%>/applications" method="POST">
+        <label for="title">Item Title: </label>
+        <input type="text" name="title" id="title">
+
+        <label for="description">Item Description: </label>
+
+        <input type="text" name="description" id="description" />
+
+      
+        <label for="quantity">Item Quantity</label>
+        <input name="quantity" id="quantity" />
+
+
+        <label for="deliverydate">Delivery Date: </label>
+        <input type="date" name="deliverydate" id="deliverydate" />
+
+
+        <label for="priority">Priority:</label>
+  <select id="priority" name="priority">
+    <option value="high">high</option>
+    <option value="medium">medium</option>
+    <option value="low">low</option>
+  </select>
+
+
+  <select hidden id="status" name="status">
+    <option hidden value="Pending Manager">pending manager approval</option>
+  </select>
+
+
+
+  <button type="submit">Add request</button>
+    </form>
+  </body>
+</html>

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
-  <title>Diplay <%= request.title %> request</title>
+  <title>Display <%= request.title %> request</title>
 </head>
 <body>
   <%- include('../partials/_navbar.ejs') %>
@@ -33,7 +33,7 @@
 
   <tr>
     <td><label for="deliverydate">Delivery Date: </label></td>
-    <td><%= request.deliverydate %></td>
+    <td><%= request.deliverydate.toISOString().split('T')[0] %></td>
   </tr>
 
   <tr>
@@ -48,12 +48,12 @@
 
   <tr>
     <td>Created Date</td>
-    <td><%= request.createdDate %></td>
+    <td><%= request.createdDate.toISOString().split('T')[0] %></td>
   </tr>
 
   <tr>
     <td>Approval Status</td>
-    <td><%=request.approvalStatus%></td>
+    <td><%=request.status%></td>
   </tr>
 
 </table>

@@ -14,6 +14,7 @@
     <%request.forEach((item) => {%>
 
         <%if(item.status == 'Pending Manager' ){%>
+
             <form action="/users/<%=currentUser%>/applications/<%=item._id%>/?_method=PUT" method="POST">
                 <input type="hidden" name="action" value="approve">
                 <button><span>&#10004;</span></button>
@@ -49,7 +50,7 @@
                 <td><%=item.quantity%></td>
                 <td><%=item.deliverydate%></td>
                 <td><%=item.priority%></td>
-                <%user.forEach((oneUser) => {%>
+                <%oneUser.forEach((oneUser) => {%>
                 <td><%=oneUser.username%> </td>
                 <%})%>
                 <td>Created Date</td>

@@ -35,19 +35,32 @@
             <% requests.forEach((request)=>{ %>
         <tr>
 
-            <td>
-                <a href="/users/<%=user._id%>/applications/<%= request._id %>/purchase/view"><%= counter++ %></a>
-              
-            </td>
+            <td><%= counter++ %></td>
             <td><a href="/users/<%= user._id %>/applications/<%= request._id %>"><%= request.title %></a></td>
             <td><%= request.description %></td>
             <td><%= request.quantity %></td>
-            <td><%= request.approvalStatus %></td>
+            <td><%= request.status %></td>
 
             <td>
-                <form action="/users/<%=user._id%>/applications/<%=request._id%>?_method=DELETE" method="POST"><button><i class="material-icons" style="color: black;">delete</i></button></form> 
+                <form action="/users/<%= user._id %>/applications/<%= request._id %>?_method=DELETE" method="POST">
+                    <% if (!['Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase'].includes(request.status)) { %>
+                      <button><i class="material-icons" style="color: black;">delete</i></button>
+                    <% } else { %>
+                      <button disabled><i class="material-icons" style="color: gray;">delete</i></button>
+                    <% } %>
+                  </form>
 
-                <button><a href="/users/<%= user._id %>/applications/<%= request._id %>/edit"><i class="material-icons" style="color: black;">edit</i></a></button>
+                  <% if (!['Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase'].includes(request.status)) { %>
+                    <button>
+                      <a href="/users/<%= user._id %>/applications/<%= request._id %>/edit">
+                        <i class="material-icons" style="color: black;">edit</i>
+                      </a>
+                    </button>
+                  <% } else { %>
+                    <button disabled>
+                      <i class="material-icons" style="color: gray;">edit</i>
+                    </button>
+                  <% } %>
             
 
             </td>

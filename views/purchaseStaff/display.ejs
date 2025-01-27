@@ -28,6 +28,7 @@
     
     <%})%>
     <table border="3">
+        
         <tr>
             <td>#</td>
             <td>Item Title</td>
@@ -50,7 +51,7 @@
                 <td><%=item.quantity%></td>
                 <td><%=item.deliverydate%></td>
                 <td><%=item.priority%></td>
-                <%user.forEach((oneUser) => {%>
+                <%oneUser.forEach((oneUser) => {%>
                 <td><%=oneUser.username%> </td>
                 <%})%>
                 <td>Created Date</td>

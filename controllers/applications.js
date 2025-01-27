@@ -145,7 +145,7 @@ router.get('/:requestId', async (req, res) => {
       })
     })
     res.render('Manager/show.ejs',
-      {request:request, user:user, currentUser: currentUser._id})
+      {request:request, oneUser:user, currentUser: currentUser._id})
 
   }
   else if (currentUser.role === 'purchaseStaff'){
@@ -162,7 +162,7 @@ router.get('/:requestId', async (req, res) => {
       })
     })
     res.render('purchaseStaff/display.ejs',
-      {request:request, user:user, currentUser: currentUser._id})
+      {request:request, oneUser:user, currentUser: currentUser._id})
   }
 } catch (error) {
     console.log(error)

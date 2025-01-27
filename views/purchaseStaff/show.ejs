@@ -48,9 +48,8 @@
         <%let count=0%>
         <%allRequests.forEach ((request) => {%>
             <%(request.requests).forEach((item) => {%>
-
-
-                    
+                <%if(item.status === categoryType){ %>
+                   
         <tr>
             <td><a href="/users/<%=user._id%>/applications/<%=item._id%>"><%=count= count+1%></a></td>
             <!-- <td><%=request.username%></td>
@@ -65,7 +64,7 @@
                 <%=item.status%></td>
                 <%}%>
             <td>
-                <%if(item.status == 'Approve by Manager'  || item.status == null){ item.status = 'Pending Manager'%>
+                <%if(item.status === 'Approve by Manager'){ %>
                     <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
                         <input type="hidden" name="action" value="approve">
                         <button type="submit"><span>&#10004;</span></button>
@@ -77,11 +76,23 @@
                 <%}else{}%>
             </td>
             
+            <%}%>
 
         <%})%>
+
         </tr>
+
+
         <%})%>
+
+        <%if(count===0){%>
+            <tr >
+                <td colspan="7" style="text-align: center;">No data</td>
+            </tr>
+
+        <%}%>
 
     </table>
+
 </body>
 </html>

@@ -39,29 +39,42 @@ router.get("/new", async(req,res)=>{
 router.get('/showAll', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
-
     const allUser = await User.find()
     const categoryType = req.query.action
     // console.log(currentUser.requests)
+    let userRequests = []
+      allUser.forEach((user) => {
+        userRequests.push(user)
+      })
+// console.log("lll: "+userRequests)
+
     if (currentUser.role === 'employee'){
     res.render('applications/show.ejs',{requests:currentUser.requests})
     }
     else if(currentUser.role === 'manager'){
       //console.log("all users", allUser)
-      let userRequests = []
-      allUser.forEach((user) => {
-        if(user.role==='employee'){
-        //userRequests.username = user.username
-        userRequests.push(user)
-        //userRequests.push(user.requests) 
-        }
-      });
+      // let userRequests = []
+      // allUser.forEach((user) => {
+      //   if(user.role==='employee'){
+      //   //userRequests.username = user.username
+      //   userRequests.push(user)
+      //   //userRequests.push(user.requests) 
+      //   }
+      // });
       res.render('Manager/index.ejs',{
         allRequests:userRequests, 
         user:currentUser,
         categoryType: categoryType
       })
     //console.log("user requests", userRequests)
+    }
+    else if (currentUser.role === 'purchaseStaff'){
+    // res.render('purchaseStaff/show.ejs',{requests:userRequests})
+    res.render('purchaseStaff/show.ejs',{
+      allRequests:userRequests, 
+      user:currentUser,
+      categoryType: categoryType
+    })
     }     
 
   } catch (error) {
@@ -114,10 +127,11 @@ router.get('/:requestId/edit', async (req, res) => {
 router.get('/:requestId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
-    const request =  await currentUser.requests.id(req.params.requestId)
     if(currentUser.role==='employee'){
+    const request =  await currentUser.requests.id(req.params.requestId)
     res.render('applications/display.ejs', {request: request, currentUser:currentUser})
-  } else if (currentUser.role === 'manager'){
+  } 
+  else if (currentUser.role === 'manager'){
 //to let the manager view each request in a seperate page
     const allUser = await User.find()
     let request = []
@@ -134,7 +148,23 @@ router.get('/:requestId', async (req, res) => {
       {request:request, user:user, currentUser: currentUser._id})
 
   }
-  } catch (error) {
+  else if (currentUser.role === 'purchaseStaff'){
+    //to let the purchaseStaff view each request in a seperate page
+    const allUser = await User.find()
+    let request = []
+    let user = []
+    allUser.forEach((oneUser) => {
+      oneUser.requests.forEach((oneRequest)=>{
+        if(oneRequest._id == req.params.requestId){
+         user.push(oneUser)
+         request.push(oneRequest)
+        }
+      })
+    })
+    res.render('purchaseStaff/display.ejs',
+      {request:request, user:user, currentUser: currentUser._id})
+  }
+} catch (error) {
     console.log(error)
     res.redirect('/')
   }
@@ -144,6 +174,17 @@ router.get('/:requestId', async (req, res) => {
 router.put("/:requestId",async(req,res)=>{
   try{
     const currentUser = await User.findById(req.session.user._id)
+    const allUser = await User.find()
+    let userRequests = []
+    allUser.forEach((user) => {
+      userRequests.push(user)
+    })
+    let itemRequests = []
+    userRequests.forEach((request)=>{
+      (request.requests).forEach((item) => {
+        itemRequests.push(item)
+      })})
+      console.log("bbb"+itemRequests)
 
     if(currentUser.role === 'employee'){
       const request = currentUser.requests.id(req.params.requestId)    
@@ -151,6 +192,7 @@ router.put("/:requestId",async(req,res)=>{
       await currentUser.save()
       res.redirect(`/users/${currentUser._id}/applications/showAll`)
     }
+
     else if(currentUser.role === 'manager'){
       // to approve the request by the manager
     const user = await User.findOne({ "requests._id": req.params.requestId });
@@ -163,7 +205,20 @@ router.put("/:requestId",async(req,res)=>{
     }
     await user.save();
     res.redirect(`/users/${user._id}/applications/showAll?action=all`);
-  }     
+  }
+  else if(currentUser.role === 'purchaseStaff'){
+    const user = await User.findOne({ "requests._id": req.params.requestId });
+    const request = user.requests.id(req.params.requestId);
+    if(req.body.action === 'approve'){
+      request.status = 'Approve by Purchase';
+    }
+    else if (req.body.action === 'reject'){
+      request.status = 'Reject by purchase';
+    }
+    await user.save();
+    res.redirect(`/users/${user._id}/applications/showAll?action=all`);
+  }
+  
     }catch(error){
       console.log(error)
       res.redirect('/')
@@ -172,37 +227,26 @@ router.put("/:requestId",async(req,res)=>{
 
 
 
-router.get('/:requestId/edit', async (req, res) => {
-  try {
-    const currentUser = await User.findById(req.session.user._id)
-    const request = currentUser.requests.id(req.params.requestId)
-    res.render('applications/edit.ejs', {request: request, currentUser:currentUser})
 
-  } catch (error) {
-    console.log(error)
-    res.redirect('/')
-  }
-})
-
-router.get('/:requestId/purchase/view', async (req, res) => {
-  try {
-    const currentUser = await User.findById(req.session.user._id)
-    const request = currentUser.requests.id(req.params.requestId)
-    res.render('applications/purchase-view.ejs', {request: request, currentUser:currentUser})
-  } catch (error) {
-    console.log(error)
-    res.redirect('/')
-  }
-})
+// router.get('/:requestId/purchase/view', async (req, res) => {
+//   try {
+//     const currentUser = await User.findById(req.session.user._id)
+//     const request = currentUser.requests.id(req.params.requestId)
+//     res.render('applications/purchase-view.ejs', {request: request, currentUser:currentUser})
+//   } catch (error) {
+//     console.log(error)
+//     res.redirect('/')
+//   }
+// })
 
 
-router.put("/:requestId/purchase/view",async(req,res)=>{
-  const currentUser = await User.findById(req.session.user._id)
-  const request = await currentUser.requests.id(req.params.requestId)
-  request.set(req.body)
-  await currentUser.save()
-  res.redirect(`/users/${currentUser._id}/applications/showAll`)
-})
+// router.put("/:requestId/purchase/view",async(req,res)=>{
+//   const currentUser = await User.findById(req.session.user._id)
+//   const request = await currentUser.requests.id(req.params.requestId)
+//   request.set(req.body)
+//   await currentUser.save()
+//   res.redirect(`/users/${currentUser._id}/applications/showAll`)
+// })
 
 
 

@@ -25,7 +25,6 @@
             <td>Approval Status</td>
             <td>Action</td>
         </tr>
-
         <%if(categoryType==='pending'){%>
             <%categoryType='Pending Manager'%>
         <%}%>
@@ -36,7 +35,7 @@
             <%categoryType='Reject by Manager'%>
         <%}%>
         <%if(categoryType==='approveByPurchase'){%>
-            <%categoryType='Approve by purchase'%>
+            <%categoryType='Approve by Purchase'%>
         <%}%>
         <%if(categoryType==='completedByPurchase'){%>
             <%categoryType='Completed by purchase'%>
@@ -48,7 +47,7 @@
         <%let count=0%>
         <%allRequests.forEach ((request) => {%>
             <%(request.requests).forEach((item) => {%>
-                <%if(item.status === categoryType){ %>
+                <%if(item.status === categoryType || categoryType==='all'){ %>
                    
         <tr>
             <td><a href="/users/<%=user._id%>/applications/<%=item._id%>"><%=count= count+1%></a></td>

@@ -5,44 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Add a New request</title>
+    <link rel="stylesheet" href="/styles/index.css">
 
   </head>
   <body>
+    <style>
+      td:nth-child(odd){
+      background-color: #0E2841;
+      color: white;
+      width: 50%;
+      text-align: center;
+  }
+    </style>
+
+
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Add a New request</h1>
+    <h1 style="text-align: center;">Add a New request</h1>
 
     <form action="/users/<%=user._id%>/applications" method="POST">
-        <label for="title">Item Title: </label>
-        <input type="text" name="title" id="title">
 
-        <label for="description">Item Description: </label>
+      <table style="margin-left: auto; margin-right: auto;">
+        <tbody>
+          <tr>
+            <td><label for="title">Item Title: </label></td>
+            <td><input type="text" name="title" id="title"></td>
+          </tr>
 
-        <input type="text" name="description" id="description" />
+          <tr>
+            <td><label for="description">Item Description: </label></td>
+            <td><input type="text" name="description" id="description" /></td>
+          </tr>
 
-      
-        <label for="quantity">Item Quantity</label>
-        <input name="quantity" id="quantity" />
+          <tr>
+            <td><label for="quantity">Item Quantity</label></td>
+            <td><input name="quantity" id="quantity" /></td>
+          </tr>
 
+          <tr>
+            <td><label for="deliverydate">Delivery Date: </label></td>
+            <td><input type="date" name="deliverydate" id="deliverydate" /></td>
+          </tr>
 
-        <label for="deliverydate">Delivery Date: </label>
-        <input type="date" name="deliverydate" id="deliverydate" />
+        
 
+          <tr>
+            <td><label for="priority">Priority:</label></td>
+            <td>          <select id="priority" name="priority">
+              <option value="high">high</option>
+              <option value="medium">medium</option>
+              <option value="low">low</option>
+            </select>
+          </td>
+          </tr>
 
-        <label for="priority">Priority:</label>
-  <select id="priority" name="priority">
-    <option value="high">high</option>
-    <option value="medium">medium</option>
-    <option value="low">low</option>
-  </select>
+           <select hidden id="status" name="status">
+              <option hidden value="Pending Manager">pending manager approval</option>
+            </select>
 
+        </tbody>
+      </table>
+<br>
+      <div class="center">  
+        <button type="submit" class="signBt">Add request</button>
+      </div>
 
-  <select hidden id="status" name="status">
-    <option hidden value="Pending Manager">pending manager approval</option>
-  </select>
-
-
-
-  <button type="submit">Add request</button>
     </form>
   </body>
 </html>

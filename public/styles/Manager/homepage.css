@@ -164,25 +164,6 @@ body {
 }
 
 
-/* views/index.ejs */
-
-.welcomeIndexDiv{
-    border: solid black 3px;
-    height: 30em;
-
-}
-
-.welcomeIndexP{
-    margin: 50px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    
-    /* padding: 15em */
-}
-
 
 
 

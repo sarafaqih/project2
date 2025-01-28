@@ -1,0 +1,75 @@
+
+.material-symbols-outlined {
+
+    font-variation-settings:
+  'FILL' 0,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+h2{
+    text-align: center;
+    margin-top: 40px;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    display: table;
+    width: 1000px;
+    text-align: center;
+    table-layout: fixed;
+}
+
+.firstRow{
+    font-size: 22px;
+    color: white;
+    background-color: #0E2841;
+}
+
+.secondRow{
+    font-size: 18px;
+}
+
+/* #approve{
+    color: #0E2841;
+} */
+
+containerB{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.showButton{
+    margin: 0 auto;
+    width: 10em;
+    height: 2em;
+    border-radius: 5px;
+    text-align: left;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    border: solid black 2px;
+
+}
+
+form button{
+    margin: 0 auto;
+    /* background: gray; */
+}
+form{
+    padding-left:40px ;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

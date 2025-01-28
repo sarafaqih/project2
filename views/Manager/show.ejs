@@ -48,12 +48,12 @@
                 <td><%=item.title%></td>
                 <td><%=item.description%></td>
                 <td><%=item.quantity%></td>
-                <td><%=item.deliverydate%></td>
+                <td><%=item.deliverydate.toISOString().split('T')[0]%></td>
                 <td><%=item.priority%></td>
                 <%oneUser.forEach((oneUser) => {%>
                 <td><%=oneUser.username%> </td>
                 <%})%>
-                <td>Created Date</td>
+                <td><%=item.createdDate.toISOString().split('T')[0]%></td>
                 <td>
                     <%if(item.status == null){%>
                     Pending Manager

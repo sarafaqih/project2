@@ -14,7 +14,7 @@ const session = require('express-session');
 const isSignedIn = require("./middleware/is-signed-in.js")
 const passUserToView = require("./middleware/pass-user-to-view.js")
 const User = require('./models/user.js')
-
+const path = require("path")
 
 
 
@@ -24,7 +24,7 @@ const User = require('./models/user.js')
 app.use(express.urlencoded({ extended: false })); // parses the request body. Needed for the req.body
 app.use(methodOverride("_method")); // Will change the methods for
 app.use(morgan("dev")); // Logs the requests in the terminal
-
+app.set('view engine', 'ejs');
 
 // =======================
 // 3. CONNECTION TO DATABASE
@@ -44,7 +44,6 @@ app.use(
   })
 )
 
-const path = require("path")
 app.use(express.static(path.join(__dirname, "public")));
 
 

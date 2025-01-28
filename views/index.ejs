@@ -5,20 +5,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/styles/index.css">
+    <link rel="stylesheet" href="styles/index.css" />
+
     <title>Website index</title>
   </head>
   <body>
-    <%- include("./partials/_navbar.ejs")%>
+    <%- include('./partials/_navbar.ejs') %>
 
-    <p style="text-align: center">Welcome to NSH 
+
+    <div class="welcomeIndexDiv">
+    <p class="welcomeIndexP">Welcome to NSH 
       Purchase Requisition System</p>
-    <% if(user){%>
-    <h1><%=user.username%></h1>
-    <%}%>
-    <!-- <a href="/auth/sign-up">Sign up</a>
-    <a href="/auth/sign-in">Sign in</a> -->
+      
+    </div>
+      
+
+
+
   </body>
 
 </html>
-

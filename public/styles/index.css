@@ -1,0 +1,25 @@
+/* views/index.ejs */
+
+.welcomeIndexDiv{
+    border: solid black 3px;
+    height: 30em;
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+
+}
+
+.welcomeIndexP{
+    margin: 50px; 
+    font-size: 5em;
+    text-align: center;
+    font-family: "Cormorant Infant", serif;
+    font-weight: 300;
+    font-style: normal;
+    padding-top: 60px;
+    
+    /* padding: 15em */
+}
+
+
+

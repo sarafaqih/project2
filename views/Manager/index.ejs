@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
+    <link rel="stylesheet" href="/styles/Manager/index.css" />
+    
     <title>Manager Purchase Requests</title>
 </head>
 <body>
@@ -13,7 +15,7 @@
     
     <h2>Track Purchase Requests</h2>
     <table border="3">
-        <tr>
+        <tr class="firstRow">
             <td>#</td>
             <!-- <td>Requester Name</td>
             <td>Requester Department</td> -->
@@ -51,7 +53,7 @@
                 <%if (request.department === user.department){%>
                 <%if(categoryType === item.status || categoryType === 'all'){%>
                     
-        <tr>
+        <tr class="secondRow">
             <td><a href="/users/<%=user._id%>/applications/<%=item._id%>"><%=count= count+1%></a></td>
             <!-- <td><%=request.username%></td>
             <td><%=request.department%></td> -->
@@ -82,7 +84,7 @@
         </tr>
         <%})%>
         <%if(count===0){%>
-            <tr >
+            <tr class="secondRow">
                 <td colspan="7" style="text-align: center;">No data</td>
             </tr>
 

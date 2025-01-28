@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=add" />
+    <title>User index</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h2>Manager Homepage</h2>
+   
+    <form action="/users/<%=user._id%>/applications/showAll" method="GET">
+      <input type="hidden" value="all" name="action">
+      <button>Track All</button>
+    </form>
+
+    <form action="/users/<%=user._id%>/applications/showAll" method="GET">
+      <input type="hidden" value="pending" name="action">
+      <button>Pending</button>
+    </form>
+
+    <form action="/users/<%=user._id%>/applications/showAll" method="GET">
+      <input type="hidden" value="approveByManager" name="action">
+      <button>Approve by Manager</button>
+    </form>
+
+    <form action="/users/<%=user._id%>/applications/showAll" method="GET">
+      <input type="hidden" value="rejectByManager" name="action">
+      <button>Reject By Manager</button>
+    </form>
+
+    <form action="/users/<%=user._id%>/applications/showAll" method="GET">
+      <input type="hidden" value="approveByPurchase" name="action">
+      <button>Approve by purchase</button>
+    </form>
+
+    <form action="/users/<%=user._id%>/applications/showAll" method="GET">
+      <input type="hidden" value="rejectByPurchase" name="action">
+      <button>Reject by purchase</button>
+    </form>
+
+  </body>
+</html>

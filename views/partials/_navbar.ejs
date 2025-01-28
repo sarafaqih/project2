@@ -1,0 +1,17 @@
+
+
+<nav>
+    <% if(user) { %>
+    <a href="/users/<%= user._id %>/applications">Your index</a>
+    <a href="/auth/sign-out">Sign Out</a>
+    <p>Welcome <%=user.username%></p>
+    <% } else { %>
+    <a href="/auth/sign-in">Sign In</a>
+    <a href="/auth/sign-up">Sign Up</a>
+    <% } %>
+</nav>
+  
+
+
+<h1>N S H</h1>
+<hr>

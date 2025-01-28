@@ -1,0 +1,189 @@
+
+
+
+
+
+/* body */
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 20px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    color: #333;
+}
+
+
+
+.contAll{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+
+}
+
+.trackAll{
+    /* border: solid black 3px; */
+
+}
+
+.fillters{
+
+    width: 40em;
+    height: 30em;
+    display: grid;
+    /* flex-direction: column; */
+    /* flex-wrap: wrap; */
+    /* align-items: baseline; */
+    grid-template-rows: 100px 100px 100px 100px;
+    grid-template-columns: 100px 100px 100px 100px 100px 100px;
+    gap: 0.8em;
+
+
+
+}
+
+
+.filltersButtonPending{
+
+    /* background-color: #093450; */
+    grid-row: 1 / 3;
+    grid-column: 1 / 7;
+
+    /* grid-row: span 6;
+    grid-column: span 2; */
+}
+.filltersButtonApprove{
+
+    grid-row: 3/4;
+    grid-column: 1/4;
+}
+
+.pendingButton{
+    background-color: white; 
+    color: black; 
+    padding: 15px 20px; 
+    margin: 5px;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+    font-size: 16px; 
+    width: 41.1em;
+    height: 150px;
+    margin-top: 3em;
+    border: solid black 2px;
+    
+ 
+
+}
+
+.filltersButtonReject{
+    grid-row: 3/4;
+    grid-column: 4/7;
+}
+
+.filltersButtonApprovePurch{
+    grid-row: 4/5;
+    grid-column: 1/4;
+}
+
+.filltersButtonRejectPurch{
+    grid-row: 4/5;
+    grid-column: 4/7;
+}
+/* .filltersButtonAll{
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 800px;
+   
+} */
+
+.trackAllButton {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    /* border: solid black 3px; */
+    
+}
+
+
+
+.trackAllButton button {
+    background-color: white; 
+    color: black; 
+    padding: 15px 20px; 
+    border: solid black 2px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    width: 20em;
+    height: 3em;
+
+}
+
+#trackAllImg{
+    height: 20em;
+    width: 20em;
+
+
+}
+
+
+.filltersButton{
+
+    /* border: solid black 3px; */
+
+
+
+}
+
+
+
+.filltersButton button {
+    background-color: white; 
+    color: black; 
+    padding: 15px 20px; 
+    margin: 5px;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px; 
+    width: 20em;
+    height: 5em;
+    border: solid black 2px;
+}
+
+
+/* views/index.ejs */
+
+.welcomeIndexDiv{
+    border: solid black 3px;
+    height: 30em;
+
+}
+
+.welcomeIndexP{
+    margin: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    
+    /* padding: 15em */
+}
+
+
+
+
+

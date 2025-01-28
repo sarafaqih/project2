@@ -36,7 +36,7 @@
             <%categoryType='Reject by Manager'%>
         <%}%>
         <%if(categoryType==='approveByPurchase'){%>
-            <%categoryType='Approve by purchase'%>
+            <%categoryType='Approve by Purchase'%>
         <%}%>
         <%if(categoryType==='completedByPurchase'){%>
             <%categoryType='Completed by purchase'%>
@@ -81,6 +81,12 @@
         <%})%>
         </tr>
         <%})%>
+        <%if(count===0){%>
+            <tr >
+                <td colspan="7" style="text-align: center;">No data</td>
+            </tr>
+
+        <%}%>
 
     </table>
 </body>

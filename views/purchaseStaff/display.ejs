@@ -54,7 +54,7 @@
                 <%oneUser.forEach((oneUser) => {%>
                 <td><%=oneUser.username%> </td>
                 <%})%>
-                <td>Created Date</td>
+                <td><%= item.createdDate %></td>
                 <td>
                     <%if(item.status == null){%>
                     Pending Manager

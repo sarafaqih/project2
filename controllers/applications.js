@@ -40,7 +40,7 @@ router.get('/showAll', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id)
     const allUser = await User.find()
-    const categoryType = req.query.action
+    let categoryType = req.query.action
     // console.log(currentUser.requests)
     let userRequests = []
       allUser.forEach((user) => {

@@ -1,4 +1,7 @@
+<link rel="stylesheet" href="/styles/navbar.css">
 
+
+<!-- 
 
 <nav>
     <% if(user) { %>
@@ -14,4 +17,43 @@
 
 
 <h1>N S H</h1>
+<hr> -->
+
+
+
+<nav>
+    <% if(user) { %>
+    <a href="/users/<%= user._id %>/applications">Your index</a>
+    <a href="/auth/sign-out">Sign Out</a>
+    <!-- <p>Welcome <%=user.username%></p> -->
+
+    <% } else { %>
+    <a href="/auth/sign-in">Sign In</a>
+    <a href="/auth/sign-up">Sign Up</a>
+    <% } %>
+</nav>
+
+  
+<div class="header">
+
+    <h1 class="logo">N S H</h1>
+
+    <% if(user) { %>
+    <p>Welcome <%=user.username%></p>
+    <p class="wel">Welcome Noora</p>
+    <% } else { %>
+    <% } %>
+
+
+</div>
 <hr>
+
+
+
+
+
+
+<footer>
+    <p>All rights reserved © NSH</p>
+    <p>Contact: info@nsh.com</p>
+</footer>

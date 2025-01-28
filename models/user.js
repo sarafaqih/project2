@@ -23,7 +23,7 @@ const requestSchema = mongoose.Schema({
   },
   status: {
     type:String,
-    enum: ['Pending Manager', 'Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase']
+    enum: ['Pending Manager', 'Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Reject by purchase']
   },
    createdDate: {
     type: Date,

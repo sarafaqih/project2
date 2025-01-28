@@ -1,0 +1,24 @@
+h2{
+    text-align: center;
+    margin-top: 40px;
+}
+
+#table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    display: table;
+    width: 1100px;
+    text-align: center;
+    table-layout: fixed;
+}
+
+#firstRow{
+    font-size: 22px;
+    color: white;
+    background-color: #0E2841;
+}
+
+#secondRow{
+    font-size: 18px;
+}

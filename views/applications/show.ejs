@@ -6,6 +6,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
     <link rel="stylesheet" href="/styles/index.css">
+    <style>
+      .linkToDisplay{
+        color: #0E2841; text-decoration: underline;
+      }
+      .linkToDisplay:hover{
+          color:  rgba(125, 125, 125, 0.843);
+        }
+      
+    </style>
 
     <title>Track Requests</title>
 
@@ -37,7 +46,7 @@
         <tr>
 
             <td><%= counter++ %></td>
-            <td><a href="/users/<%= user._id %>/applications/<%= request._id %>" style="color: #0E2841; text-decoration: underline;"><%= request.title %></a></td>
+            <td><a href="/users/<%= user._id %>/applications/<%= request._id %>" class="linkToDisplay"><%= request.title %></a></td>
             <td><%= request.description %></td>
             <td><%= request.quantity %></td>
             <td><%= request.status %></td>

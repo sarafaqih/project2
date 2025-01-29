@@ -1,27 +1,31 @@
 /* views/index.ejs */
 
+
 .welcomeIndexDiv{
     border: solid black 3px;
     height: 30em;
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
+    align-items: center;
 
 }
 
+
 .welcomeIndexP{
-    margin: 50px; 
-    font-size: 5em;
+    margin: 50px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
+    font-size: 5em;
     font-family: "Cormorant Infant", serif;
     font-weight: 300;
     font-style: normal;
-    padding-top: 60px;
+
     
     /* padding: 15em */
 }
-
-
 
 
 /* nav + header */
@@ -240,22 +244,8 @@ body {
 }
 
 
-.welcomeIndexDiv{
-    border: solid black 3px;
-    height: 30em;
 
-}
 
-.welcomeIndexP{
-    margin: 50px 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    
-    /* padding: 15em */
-}
 
 .center {
     display: flex;
@@ -268,6 +258,11 @@ body {
     border-radius: 10px;
     background-color: #0E2841;
     color: white;
+    cursor: pointer;
+}
+.signBt:hover{
+    color: #0E2841;  
+    background-color: white;
 }
 
 #table{
@@ -295,10 +290,25 @@ body {
 }
 
 
+a {
+    text-decoration: none;
+}
 
 
+.ctu{
+    text-align: center;
+    font-weight: bold;
+    color: #0E2841;
+    text-decoration: none;
+}
 
-
+.material-icons{
+    cursor: pointer;
+}
+h2{
+    font-family: "Cormorant Infant", serif;
+    font-size: xx-large;
+  }
 
 footer {
     text-align: center;

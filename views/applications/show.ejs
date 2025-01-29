@@ -37,7 +37,7 @@
         <tr>
 
             <td><%= counter++ %></td>
-            <td><a href="/users/<%= user._id %>/applications/<%= request._id %>" style="color: #0E2841"><%= request.title %></a></td>
+            <td><a href="/users/<%= user._id %>/applications/<%= request._id %>" style="color: #0E2841; text-decoration: underline;"><%= request.title %></a></td>
             <td><%= request.description %></td>
             <td><%= request.quantity %></td>
             <td><%= request.status %></td>
@@ -47,7 +47,7 @@
 
                 <form action="/users/<%= user._id %>/applications/<%= request._id %>?_method=DELETE" method="POST">
                     <% if (!['Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase'].includes(request.status)) { %>
-                      <button style="margin-right: 10px;"><i class="material-icons" style="color: black;">delete</i></button>
+                      <button style="margin-right: 10px;"><i class="material-icons" style="color: #0E2841;">delete</i></button>
                     <% } else { %>
                       <button style="margin-right: 10px;" disabled><i class="material-icons" style="color: gray;">delete</i></button>
                     <% } %>
@@ -55,7 +55,7 @@
                   <% if (!['Approve by Manager', 'Reject by Manager', 'Approve by Purchase', 'Completed by purchase', 'Reject by purchase'].includes(request.status)) { %>
                       <button>
                         <a href="/users/<%= user._id %>/applications/<%= request._id %>/edit">
-                          <i class="material-icons" style="color: black;">edit</i>
+                          <i class="material-icons" style="color: #0E2841;">edit</i>
                         </a>
                       </button>
   

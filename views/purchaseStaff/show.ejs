@@ -9,9 +9,9 @@
     <title>Show Purchase Requests</title>
 </head>
 <body>
+
     <%- include('../partials/_navbar.ejs') %>
 
-    
     <h2>Track Purchase Requests</h2>
     <table border="3" id="table">
         <tr id="firstRow">
@@ -51,7 +51,7 @@
                 <%if(item.status === categoryType || categoryType==='all'){ %>
                    
         <tr id="secondRow">
-            <td><a href="/users/<%=user._id%>/applications/<%=item._id%>"><%=count= count+1%></a></td>
+            <td><a href="/users/<%=user._id%>/applications/<%=item._id%>" class="nuLink" ><%=count= count+1%></a></td>
             <!-- <td><%=request.username%></td>
             <td><%=request.department%></td> -->
             <td><%=item.title%></td>
@@ -65,14 +65,20 @@
                 <%}%>
             <td>
                 <%if(item.status === 'Approve by Manager'){ %>
+                
+                    <div class="button-container">
+
                     <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
                         <input type="hidden" name="action" value="approve" id="approve">
-                        <button type="submit"><span>&#10004;</span></button>
+                        <button type="submit" class="action-button"><span>&#10004;</span></button>
                     </form>
+
                     <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
                         <input type="hidden" name="action" value="reject" id="reject">
-                        <button type="submit"><span>&#10006;</span></button>
+                        <button type="submit" class="action-button"><span>&#10006;</span></button>
                     </form>
+
+                    </div>
                 <%}else{}%>
             </td>
             

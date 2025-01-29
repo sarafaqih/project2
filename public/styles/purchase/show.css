@@ -1,6 +1,7 @@
 h2{
     text-align: center;
     margin-top: 40px;
+    font-family: "Cormorant Infant", serif;
 }
 
 #table{
@@ -24,9 +25,37 @@ h2{
     font-size: 18px;
 }
 
+.nuLink{
+    color: #0E2841
+}
+
+.nuLink:hover{
+    color:  rgba(125, 125, 125, 0.843);
+
+}
+
 button{
     margin: 5px;
     font-size: 20px;
     color: #0E2841;
-    
+    cursor: pointer;
+    width: 35px;                
+    height: 35px;               
+    font-size: 20px;  
+    border-radius: 5px;
+    border: none;
+    background-color:  rgba(210, 210, 210, 0.843);
+}
+
+
+.button-container {
+    display: flex;              
+    justify-content: center;     
+    gap: 10px;                  
+}
+
+
+.action-button:hover {
+    background-color: #0E2841;  
+    color: white;
 }

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=edit" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <title>Editing <%= request.title %> request</title>
   <link rel="stylesheet" href="/styles/index.css">
 
@@ -17,13 +19,17 @@
     width: 50%;
     text-align: center;
 }
+h2{
+  font-family: "Cormorant Infant", serif;
+}
   </style>
 
   <%- include('../partials/_navbar.ejs') %>
 
 
-  <h2>Edit <%= request.title %> request</h2>
-  
+  <h2 style="text-align: center;">Edit <%= request.title %> request</h2>
+  <br>
+  <br>
 <form action="/users/<%= user._id %>/applications/<%= request._id %>?_method=PUT" method="POST">
 <table border="2" style="margin-left: auto; margin-right: auto;">
   <tr>

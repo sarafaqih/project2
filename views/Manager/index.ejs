@@ -20,12 +20,11 @@
     <table border="3">
         <tr class="firstRow">
             <td>#</td>
-            <!-- <td>Requester Name</td>
-            <td>Requester Department</td> -->
+
             <td>Item Title</td>
             <td>Item Description</td>
             <td>Item Quantity</td>
-            <!-- <td>Priority</td> -->
+
 
             <td>Approval Status</td>
             <td>Action</td>
@@ -58,8 +57,7 @@
                     
         <tr class="secondRow">
             <td><a href="/users/<%=user._id%>/applications/<%=item._id%>" class="nuLink"><%=count= count+1%></a></td>
-            <!-- <td><%=request.username%></td>
-            <td><%=request.department%></td> -->
+
             <td><%=item.title%></td>
             <td><%=item.description%></td>
             <td><%=item.quantity%></td>
@@ -71,14 +69,6 @@
                 <%}%>
             <td>
                 <%if(item.status == 'Pending Manager'  || item.status == null){ item.status = 'Pending Manager'%>
-                    <!-- <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="approve">
-                        <button style="font-size: 20px;"><span>&#10004;</span></button>
-                    </form> 
-                    <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
-                        <input type="hidden" name="action" value="reject">
-                        <button><span>&#10006;</span></button>
-                    </form>  -->
                     <div class="button-container">
                         <form action="/users/<%=user._id%>/applications/<%=item._id%>/?_method=PUT" method="POST">
                             <input type="hidden" name="action" value="approve">

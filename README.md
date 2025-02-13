@@ -1,8 +1,10 @@
 README 
+
 •	Screenshot/Logo:  
 <img width="452" alt="image" src="https://github.com/user-attachments/assets/2070d564-7d55-4e6c-b7a7-3be94daa0632" />
 
 •	App’s name: 
+
 o	Description of the app: 
 The NSH Purchase Requisition System is a streamlined platform designed to simplify and enhance the purchasing process within an organization. It allows employees from various departments to submit requests for necessary items, enabling better communication and tracking throughout the procurement workflow. 
 o	Functionality: 
